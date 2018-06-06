@@ -47,7 +47,7 @@ var server = http.createServer ( function(request,response){
             var returnedVals = trendsData.default.timelineData[0].formattedValue
             console.log(`Answer 1: ${returnedVals[0]}`);
             console.log(`Answer 2: ${returnedVals[1]}`);
-            response.end(`{ val1: ${returnedVals[0]}, val2: ${returnedVals[1]} }`);
+            response.end(`{ \"val1\": ${returnedVals[0]}, \"val2\": ${returnedVals[1]} }`);
           })
           .catch(function(err){
             console.log('Oh no there was another error', err);
