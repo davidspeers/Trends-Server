@@ -52,7 +52,7 @@ var server = http.createServer ( function(request,response){
           .catch(function(err){
             console.log('Oh no there was another error', err);
             console.log('No Data Available for Query. Returning 0.')
-            response.end("{ val1: 0, val2: 0 }")
+            response.end("{ \"val1\": 0, \"val2\": 0 }")
           })
         });
       } else {
