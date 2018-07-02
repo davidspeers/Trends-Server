@@ -47,7 +47,7 @@ var server = http.createServer ( function(request,response){
         //Get cpu's term using related queries
         if (postData.mode.toString() === "CPU Mode") {
           //console.log("Getting Related Queries:");
-          googleTrends.relatedQueries({keyword: postData.query.toString(), geo: 'US', startTime: dates.get("priorDate32"), endTime: dates.get("priorDate2")})
+          googleTrends.relatedQueries({keyword: postData.query, geo: 'US', startTime: dates.get("priorDate32"), endTime: dates.get("priorDate2")})
           .then((results) => {
             var relatedQueries = JSON.parse(results);
             //Top Queries
@@ -55,9 +55,9 @@ var server = http.createServer ( function(request,response){
             //Rising Queries
             //console.log(relatedQueries.default.rankedList[1]);
             var relatedQuery = cpuAnswer(relatedQueries);
-            if (!relatedQuery.includes(postData.query.toString())) {
+            if (!relatedQuery.includes(postData.query)) {
               //console.log("Didn't Contain Word");
-              relatedQuery += " " + postData.query.toString();
+              relatedQuery += " " + postData.query;
             }
             terms.push(relatedQuery);
             //console.log("Related Query: " + relatedQuery);
