@@ -47,6 +47,11 @@ var server = http.createServer ( function(request,response){
         //Get cpu's term using related queries
         if (postData.mode.toString() === "CPU Mode") {
           //console.log("Getting Related Queries:");
+          /*
+          For some reason postData.query.toString() caused the server to crash on herokuapp only.
+          Removing .toString() fixed the bug. 
+          The crash location was found by entering heroku logs in the terminal.
+          */
           googleTrends.relatedQueries({keyword: postData.query, geo: 'US', startTime: dates.get("priorDate32"), endTime: dates.get("priorDate2")})
           .then((results) => {
             var relatedQueries = JSON.parse(results);
