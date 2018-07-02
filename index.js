@@ -49,7 +49,7 @@ var server = http.createServer ( function(request,response){
           //console.log("Getting Related Queries:");
           /*
           For some reason postData.query.toString() caused the server to crash on herokuapp only.
-          Removing .toString() fixed the bug. 
+          Removing .toString() fixed the bug.
           The crash location was found by entering heroku logs in the terminal.
           */
           googleTrends.relatedQueries({keyword: postData.query, geo: 'US', startTime: dates.get("priorDate32"), endTime: dates.get("priorDate2")})
@@ -132,7 +132,7 @@ var server = http.createServer ( function(request,response){
             }
             response.end(
               JSON.stringify({
-                "values": [returnedVals],
+                "values": returnedVals,
                 //Ternary operator.
                 //A property whose value is undefined isn't written when you stringify the object to JSON.
                 "cpuAnswer": (postData.mode.toString() === "CPU Mode" ? terms.slice(-1)[0] : undefined)
@@ -148,7 +148,7 @@ var server = http.createServer ( function(request,response){
             }
             response.end(
               JSON.stringify({
-                "values": [returnedVals],
+                "values": returnedVals,
                 "cpuAnswer": (postData.mode.toString() === "CPU Mode" ? terms.slice(-1)[0] : undefined)
               })
             );
