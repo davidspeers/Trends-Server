@@ -45,7 +45,7 @@ var server = http.createServer ( function(request,response){
         }
 
         //Get cpu's term using related queries
-        if (postData.mode.toString() === "cpu") {
+        if (postData.mode.toString() === "CPU Mode") {
           //console.log("Getting Related Queries:");
           googleTrends.relatedQueries({keyword: postData.query.toString(), geo: 'US', startTime: dates.get("priorDate32"), endTime: dates.get("priorDate2")})
           .then((results) => {
@@ -130,7 +130,7 @@ var server = http.createServer ( function(request,response){
                 "values": [returnedVals],
                 //Ternary operator.
                 //A property whose value is undefined isn't written when you stringify the object to JSON.
-                "cpuAnswer": (postData.mode.toString() === "cpu" ? terms.slice(-1)[0] : undefined)
+                "cpuAnswer": (postData.mode.toString() === "CPU Mode" ? terms.slice(-1)[0] : undefined)
               })
             );
           })
@@ -144,7 +144,7 @@ var server = http.createServer ( function(request,response){
             response.end(
               JSON.stringify({
                 "values": [returnedVals],
-                "cpuAnswer": (postData.mode.toString() === "cpu" ? terms.slice(-1)[0] : undefined)
+                "cpuAnswer": (postData.mode.toString() === "CPU Mode" ? terms.slice(-1)[0] : undefined)
               })
             );
           })
