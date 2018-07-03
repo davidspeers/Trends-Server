@@ -86,17 +86,17 @@ var server = http.createServer ( function(request,response){
             return "Error";
           } else {
             switch (postData.difficulty.toString()) {
-              case "impossible":
+              case "Impossible":
                 //Get first value from related
                 return relatedQueries.default.rankedList[0].rankedKeyword[0].query;
                 break;
-              case "hard":
+              case "Hard":
                 //Can only return the item, therefore .query required at end
                 return relatedQueries.default.rankedList[0].rankedKeyword.find(function (item) {
                   return item.value<20;
                 }).query;
                 break;
-              case "normal":
+              case "Normal":
                 return relatedQueries.default.rankedList[0].rankedKeyword.find(function (item) {
                   return item.value<5;
                 }).query;
