@@ -60,7 +60,8 @@ var server = http.createServer ( function(request,response){
             //Rising Queries
             //console.log(relatedQueries.default.rankedList[1]);
             var relatedQuery = cpuAnswer(relatedQueries);
-            if (!relatedQuery.includes(postData.query)) {
+            //.toLowerCase because terms are capitalised in dart app, but lowercase in googleTrends api
+            if (!relatedQuery.includes(postData.query.toLowerCase())) {
               //console.log("Didn't Contain Word");
               relatedQuery += " " + postData.query;
             }
