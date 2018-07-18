@@ -11,7 +11,7 @@ var server = http.createServer ( function(request,response){
   //Add /multiplayer at end of url to make true
   if (request.url === '/multiplayer') {
     console.log("______GOT HERE_________");
-    multiplayer.execute();
+    //multiplayer.execute();
   }
 
   //Reply to post request with my custom execute method
