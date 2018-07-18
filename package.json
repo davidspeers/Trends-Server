@@ -10,6 +10,7 @@
   "author": "David Speers",
   "license": "ISC",
   "dependencies": {
-    "google-trends-api": "^4.6.2"
+    "google-trends-api": "^4.6.2",
+    "net": "^1.0.2"
   }
 }
