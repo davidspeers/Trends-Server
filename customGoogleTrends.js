@@ -123,7 +123,7 @@ exports.execute = function(request, response) {
               console.log(`Answer ${i+1}: ${returnedVals[i]}`);
             }
           }
-          response.end(JSON.stringify({
+          response.send(JSON.stringify({
               "values": returnedVals,
               //Ternary operator.
               //A property whose value is undefined isn't written when you stringify the object to JSON.
@@ -137,7 +137,7 @@ exports.execute = function(request, response) {
           for (var i=0; i<postData.values.length; i++) {
             returnedVals.push(0);
           }
-          response.end(JSON.stringify({
+          response.send(JSON.stringify({
               "values": returnedVals,
               "cpuAnswer": (postData.mode.toString() === "CPU Mode" ? terms.slice(-1)[0] : undefined)
             }));
