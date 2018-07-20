@@ -16,7 +16,7 @@ var server          = app.listen(PORT);
 app.use(function (request, response) {
 
   //Create Head for JSON response
-  response.writeHead(200,{"Content-Type":"application/json"});
+  //response.writeHead(200,{"Content-Type":"application/json"});
 
   //Add /multiplayer at end of url to make true
   if (request.url === '/multiplayer') {
