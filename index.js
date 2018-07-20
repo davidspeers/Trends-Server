@@ -28,7 +28,9 @@ wss.on('connection', (ws) => {
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
     //Works but gets taken over by the counter which runs every second
-    ws.send(message);
+    postData = JSON.parse(message);
+    //ws.send(message);
+    ws.send(postData.Query)
   });
   ws.on('close', () => console.log('Client disconnected'));
 });
