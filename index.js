@@ -1,14 +1,10 @@
 'use strict';
 
-//This server receives POST REQUESTS
-//var http = require('http');
+var express = require('express');
 const googleTrends = require('./customGoogleTrends');
-
-const PORT = process.env.PORT || 3000;
-
 const SocketServer = require('ws').Server;
 
-var express = require('express');
+const PORT = process.env.PORT || 3000;
 var app             = express();
 var server          = app.listen(PORT);
 
