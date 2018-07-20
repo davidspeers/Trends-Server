@@ -5,12 +5,10 @@ exports.execute = function() {
   const SocketServer = require('ws').Server;
   const path = require('path');
 
+  //process.env.port means the port that heroku is using is the one we'll use
   const PORT = process.env.PORT || 3000;
-  const INDEX = path.join(__dirname, 'index.html');
 
-  const server = express()
-    .use((req, res) => res.sendFile(INDEX) )
-    .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+  const server = express().listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
   const wss = new SocketServer({ server });
 
