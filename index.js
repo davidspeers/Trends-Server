@@ -1,3 +1,5 @@
+'use strict';
+
 //This server receives POST REQUESTS
 //var http = require('http');
 const googleTrends = require('./customGoogleTrends');
@@ -12,7 +14,6 @@ var server          = app.listen(PORT);
 
 const wss = new SocketServer({ server });
 
-//var server = http.createServer ( function(request,response){
 app.use(function (request, response) {
 
   //Create Head for JSON response
@@ -35,6 +36,3 @@ wss.on('connection', (ws) => {
   });
   ws.on('close', () => console.log('Client disconnected'));
 });
-
-//server.listen(process.env.PORT || 3000);
-//console.log("Server running on port 3000");

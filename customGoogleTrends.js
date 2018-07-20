@@ -1,3 +1,5 @@
+'use strict';
+
 const googleTrendsAPI = require('google-trends-api');
 
 exports.execute = function(request, response) {
