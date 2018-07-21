@@ -1,5 +1,8 @@
 'use strict';
 
+//use heroku logs in terminal for debugging
+//if the app return !DOCTYPE this means it is a server error
+
 var express = require('express');
 const googleTrends = require('./customGoogleTrends');
 const SocketServer = require('ws').Server;
@@ -22,7 +25,10 @@ app.use(function (request, response) {
   }
 });
 
-wss.on('connection', (ws) => {
+wss.on('connection', (ws, request) => {
+  //The request parameter and below line are used as a ws room, alternatively use socket.io
+  ws.upgradeReq = request;
+
   console.log('Client connected');
   //Inside here messages can be received (check https://www.npmjs.com/package/ws#sending-and-receiving-text-data for more)
   ws.on('message', function incoming(message) {
@@ -32,5 +38,15 @@ wss.on('connection', (ws) => {
     //ws.send(message);
     ws.send(postData.Query)
   });
+
+  wss.clients.forEach(function (client) {
+			if (client.upgradeReq.url === ws.upgradeReq.url && client.id !== ws.id) {
+				if (client && client.readyState === WebSocket.OPEN) {
+					count++;
+					client.send("hello");
+				}
+			}
+  });
+
   ws.on('close', () => console.log('Client disconnected'));
 });
