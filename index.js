@@ -42,7 +42,7 @@ wss.on('connection', (ws, request) => {
   });
 
   wss.clients.forEach(function (client) {
-			if (client.upgradeReq.url === ws.upgradeReq.url){//} && client.id !== ws.id) {
+			if (client.upgradeReq.url === ws.upgradeReq.url && client.id !== ws.id) {
 				if (client && client.readyState === WebSocket.OPEN) {
 					//count++;
 					client.send("hello");
