@@ -38,7 +38,19 @@ wss.on('connection', (ws, request) => {
     //Works but gets taken over by the counter which runs every second
     var postData = JSON.parse(message);
     //ws.send(message);
-    ws.send(postData.Query)
+    //ws.send(postData.Query)
+
+    wss.clients.forEach(function (client) {
+        console.log(client.toString());
+        console.log(client.upgradeReq.url)
+        console.log(ws.upgradeReq.url)
+  			if (client.upgradeReq.url === ws.upgradeReq.url){//} && client.id !== ws.id) {
+  				//if (client && client.readyState === WebSocket.OPEN) {
+  					//count++;
+  					client.send(postData.query);
+  				//}
+  			}
+    });
   });
 
   wss.clients.forEach(function (client) {
