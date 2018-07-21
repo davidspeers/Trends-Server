@@ -50,7 +50,7 @@ wss.on('connection', (ws, request) => {
         console.log("Got bread")
 				//if (client && client.readyState === WebSocket.OPEN) {
 					//count++;
-					client.send("hello");
+					client.send(client.upgradeReq.url);
 				//}
 			}
   });
