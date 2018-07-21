@@ -6,6 +6,8 @@
 var express = require('express');
 const googleTrends = require('./customGoogleTrends');
 const SocketServer = require('ws').Server;
+var WebSocket = require('ws');
+
 
 const PORT = process.env.PORT || 3000;
 var app             = express();
