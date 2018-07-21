@@ -42,7 +42,10 @@ wss.on('connection', (ws, request) => {
   });
 
   wss.clients.forEach(function (client) {
+      console.log("Got milk");
+      console.log(client.toString());
 			if (client.upgradeReq.url === ws.upgradeReq.url && client.id !== ws.id) {
+        console.log("Got bread")
 				//if (client && client.readyState === WebSocket.OPEN) {
 					//count++;
 					client.send("hello");
