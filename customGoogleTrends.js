@@ -88,9 +88,9 @@ exports.execute = function(request, response) {
               //Can only return the item, therefore .query required at end
               var possibleVal = relatedQueries.default.rankedList[0].rankedKeyword.find(function (item) {
                 return item.value<20;
-              }).query;
+              });
               if (possibleVal !== undefined) {
-                return possibleVal
+                return possibleVal.query
               } else {
                 return relatedQueries.default.rankedList[0].rankedKeyword.slice(-1)[0].query;
               }
@@ -100,9 +100,10 @@ exports.execute = function(request, response) {
               //lowest value in the list is greater than 5 (or 20)
               var possibleVal = relatedQueries.default.rankedList[0].rankedKeyword.find(function (item) {
                 return item.value<5;
-              }).query;
+              });
               if (possibleVal !== undefined) {
-                return possibleVal
+                //Calling .query on undefined causes error
+                return possibleVal.query
               } else {
                 return relatedQueries.default.rankedList[0].rankedKeyword.slice(-1)[0].query;
               }
