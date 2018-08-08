@@ -86,14 +86,26 @@ exports.execute = function(request, response) {
               break;
             case "Hard":
               //Can only return the item, therefore .query required at end
-              return relatedQueries.default.rankedList[0].rankedKeyword.find(function (item) {
+              var possibleVal = relatedQueries.default.rankedList[0].rankedKeyword.find(function (item) {
                 return item.value<20;
               }).query;
+              if (possibleVal !== undefined) {
+                return possibleVal
+              } else {
+                return relatedQueries.default.rankedList[0].rankedKeyword.slice(-1)[0].query;
+              }
               break;
             case "Normal":
-              return relatedQueries.default.rankedList[0].rankedKeyword.find(function (item) {
+              //Normal and Val need this if-else statement because without it we get an error when the
+              //lowest value in the list is greater than 5 (or 20)
+              var possibleVal = relatedQueries.default.rankedList[0].rankedKeyword.find(function (item) {
                 return item.value<5;
               }).query;
+              if (possibleVal !== undefined) {
+                return possibleVal
+              } else {
+                return relatedQueries.default.rankedList[0].rankedKeyword.slice(-1)[0].query;
+              }
               break;
             default:
               return relatedQueries.default.rankedList[0].rankedKeyword.slice(-1)[0].query;
