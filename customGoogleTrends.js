@@ -21,7 +21,7 @@ exports.execute = function(request, response) {
     }
 
     //Get Trends results
-    if (postData.secret_val.toString() === "potato") {
+    if (postData.secret_val.toString() === "<insert your secret value here to prevent potential spam>") {
       var dates = new Map();
       dates.set("today", new Date());
       dates.set("priorDate2", new Date(new Date().setDate(dates.get("today").getDate()-2)));
